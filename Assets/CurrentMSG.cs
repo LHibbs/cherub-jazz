@@ -8,7 +8,7 @@ public class CurrentMSG : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		msg.Add("Line: 6 | Word: 0");
 	}
 	
 	// Update is called once per frame

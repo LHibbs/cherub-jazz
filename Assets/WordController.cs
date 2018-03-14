@@ -12,10 +12,9 @@ public class WordController : MonoBehaviour {
 	private List<List<string>> words = new List<List<string>>();
 	void Start () {
 		canvas = GameObject.Find("Canvas").transform;
+		currentMSGScript = currentMSGObj.GetComponent<CurrentMSG>();
 		LoadWords();
 		SpawnNextWords();
-
-		currentMSGScript = currentMSGObj.GetComponent<CurrentMSG>();
 	}
 
 	void LoadWords() {
@@ -49,13 +48,34 @@ public class WordController : MonoBehaviour {
 			^ max of 15
 		 */
 
-		 for(int i = 0; i < words.Count; i++) {
-			 if(words[i].Count < currentMSGScript.Msg.Count) {
-				 continue;
-			 }
-			 for(int j = 0; j < currentMSGScript.Msg.Count; j++) {
-				 if()
-			 }
+		List<string> wordsToSpawn = new List<string>();
+		//Debug.Log("Words is: " + words.Count);
+		for(int i = 0; i < words.Count; i++) {
+			if(words[i].Count <= currentMSGScript.Msg.Count) {
+				//Debug.Log("Exited at line " + i + " because line is too short");
+				continue;
+			}
+			//Debug.Log("Passed line length test");
+			bool addThisWord = true;
+			for(int j = 0; j < currentMSGScript.Msg.Count; j++) {
+				if(words[i][j] != currentMSGScript.Msg[j]) {
+					//Debug.Log("Exited at line " + i + " word " + j + " because word does not match");
+					addThisWord = false;
+					break;
+				}
+			}
+			//Debug.Log("Passed word match test");
+			//If we get here:
+			// 1. The length of this line is > currentMSG
+			// 2. Every word in the current msg is equal to the coorosponding part of the line
+			if(addThisWord) {
+				wordsToSpawn.Add(words[i][currentMSGScript.Msg.Count]);
+			}
+			//Debug.Log("Added word to list: " + words[i][currentMSGScript.Msg.Count]);
+		}
+
+		 foreach (string w in wordsToSpawn) {
+			 Debug.Log("Word in spawn list: " + w);
 		 }
 	}
 
