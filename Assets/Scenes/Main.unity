@@ -181,7 +181,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MESSAGE
+  m_Text: 
 --- !u!222 &416681276
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf10303446754da0a97fb2ac025069a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  storyFile: {fileID: 4900000, guid: 4bb5c57bc8623456e92e59e50ac12644, type: 3}
   word: {fileID: 1929784956718596, guid: 2f44c06b6324c44459e12925c393c38d, type: 2}
   currentMSGObj: {fileID: 416681273}
 --- !u!1 &1076029694
