@@ -32,6 +32,9 @@ public class WordController : MonoBehaviour {
 			string[] thisLine = lines[i].Split(',');
 			List<string> sendLine = new List<string>();
 			foreach (string s in thisLine) {
+				if(s == "") {
+					break;
+				}
 				sendLine.Add(s);
 			}
 			words.Add(sendLine);
@@ -72,7 +75,7 @@ public class WordController : MonoBehaviour {
 				break;
 			}
 			float rand = Random.Range(0f, 1f);
-			Debug.Log("rand: " + rand + " prob: " + ((maxWords * 1.0f - wordsToSpawn.Count) / (i+1.0f)));
+			//Debug.Log("rand: " + rand + " prob: " + ((maxWords * 1.0f - wordsToSpawn.Count) / (i+1.0f)));
 			if(rand <= (maxWords * 1.0f - wordsToSpawn.Count) / (i+1.0f)) {
 				wordsToSpawn.Add(compatibleWords[i]);
 			}
@@ -80,7 +83,6 @@ public class WordController : MonoBehaviour {
 
 		//Debug line to list every word in wordsToSpawn
 		foreach (string w in wordsToSpawn) {
-			Debug.Log("Word in spawn list: " + w);
 			Transform newWord = Instantiate(word, canvas).transform;
 			RectTransform rt = newWord.GetComponent<RectTransform>();
 			rt.position = RandomPosition();
