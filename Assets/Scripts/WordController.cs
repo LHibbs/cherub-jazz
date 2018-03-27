@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class WordController : MonoBehaviour {
 
 	public TextAsset storyFile;
-	private int maxWords = 3;
+	public TextAsset questionsFile;
+	public int maxWords = 10;
 	public GameObject word;
 	private Transform canvas;
 	public GameObject currentMSGObj;
@@ -95,6 +96,10 @@ public class WordController : MonoBehaviour {
 			Text newWordText = newWord.Find("Text").GetComponent<Text>();
 			newWordText.text = w;
 		}
+	}
+
+	void SpawnQuestionWords() {
+
 	}
 
 	public void WordClicked(string wordString) {

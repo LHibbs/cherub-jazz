@@ -157,6 +157,16 @@ Prefab:
       propertyPath: currentMSGObj
       value: 
       objectReference: {fileID: 416681273}
+    - target: {fileID: 114255763444030052, guid: ebfbce7fd408d48b5943deb0a420561d,
+        type: 2}
+      propertyPath: storyFile
+      value: 
+      objectReference: {fileID: 4900000, guid: f84b02549aaef449cab5e9d4e649f77d, type: 3}
+    - target: {fileID: 114255763444030052, guid: ebfbce7fd408d48b5943deb0a420561d,
+        type: 2}
+      propertyPath: maxWords
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebfbce7fd408d48b5943deb0a420561d, type: 2}
   m_IsPrefabParent: 0
