@@ -69,13 +69,19 @@ public class WordController : MonoBehaviour {
 		//Take a sample of the words which work
 		//Probability of being chosen = (number needed)/(number left)
 		List<string> wordsToSpawn = new List<string>();
-		
 		for (int i = compatibleWords.Count - 1; i >= 0; i--) {
+			//If wordsToSpawn has enough entries, then we're done here
 			if (wordsToSpawn.Count >= maxWords) {
 				break;
 			}
+			//If this word is already in wordsToSpawn, then skip it and go to the next word
+			if(wordsToSpawn.Contains(compatibleWords[i])) {
+				continue;
+			}
 			float rand = Random.Range(0f, 1f);
-			//Debug.Log("rand: " + rand + " prob: " + ((maxWords * 1.0f - wordsToSpawn.Count) / (i+1.0f)));
+			//Decide if this word should go in the wordsToSpawn, randomly, 
+			// with the probibilty of a word being chosen increasing over time
+			// Every word has an equal chance og being chosen
 			if(rand <= (maxWords * 1.0f - wordsToSpawn.Count) / (i+1.0f)) {
 				wordsToSpawn.Add(compatibleWords[i]);
 			}
