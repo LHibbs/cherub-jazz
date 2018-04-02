@@ -8,6 +8,7 @@ public class Word : MonoBehaviour {
 	private Button myButton;
 	private Text myText;
 	private WordController wordControllerScript;
+    private bool isQuestion = false;
 
     void Start()
     {
@@ -19,6 +20,23 @@ public class Word : MonoBehaviour {
 
     void TaskOnClick()
     {
-		wordControllerScript.WordClicked(myText.text);
+        if(isQuestion) {
+            wordControllerScript.QuestionWordClicked(myText.text);
+        } else {
+		    wordControllerScript.WordClicked(myText.text);
+        }
+    }
+
+    public bool IsQuestion
+    {
+        get
+        {
+            return isQuestion;
+        }
+
+        set
+        {
+            isQuestion = value;
+        }
     }
 }

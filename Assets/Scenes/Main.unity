@@ -165,8 +165,18 @@ Prefab:
     - target: {fileID: 114255763444030052, guid: ebfbce7fd408d48b5943deb0a420561d,
         type: 2}
       propertyPath: maxWords
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114255763444030052, guid: ebfbce7fd408d48b5943deb0a420561d,
+        type: 2}
+      propertyPath: questionsFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 4839db62622344dbcaaf719582fd5310, type: 3}
+    - target: {fileID: 114255763444030052, guid: ebfbce7fd408d48b5943deb0a420561d,
+        type: 2}
+      propertyPath: answersFile
+      value: 
+      objectReference: {fileID: 4900000, guid: ad9b8f4fdbb69463d8b6a211081c07aa, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebfbce7fd408d48b5943deb0a420561d, type: 2}
   m_IsPrefabParent: 0
@@ -387,7 +397,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
