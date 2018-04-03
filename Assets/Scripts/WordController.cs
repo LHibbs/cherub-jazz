@@ -8,7 +8,7 @@ public class WordController : MonoBehaviour {
 	public TextAsset storyFile;
 	public TextAsset questionsFile;
 	public TextAsset answersFile;
-	private int currentQuestion = 0;
+	private int currentQuestionNumber = 0;
 	private int cycles = 0;
 	public int maxWords = 5;
 	public int maxAnswers = 10;
@@ -22,7 +22,8 @@ public class WordController : MonoBehaviour {
 	private List<List<string>> answerOne = new List<List<string>>();
 	private List<List<string>> answerTwo = new List<List<string>>();
 	private List<List<string>> answerThree = new List<List<string>>();
-
+	private List<List<List<string>>> allAnswers = new List<List<List<string>>>();
+	private int currentAnswerNumber = -1;
 
 	void Start () {
 		canvas = GameObject.Find("Canvas").transform;
@@ -35,14 +36,21 @@ public class WordController : MonoBehaviour {
 	}
 
 	void Update() {
+		Debug.Log(currentQuestionNumber);
 		if(Input.GetButtonUp("Reset")) {
 			if(cycles == 5)
 			{
 				ResetWords(true);
+				currentQuestionNumber++;
+				currentAnswerNumber++;
 			} else {
 				ResetWords(false);
 			}
 			cycles++;
+		}
+
+		if(Input.GetButtonUp("Fire1")) {
+			currentAnswerNumber++;
 		}
 	}
 
@@ -78,20 +86,29 @@ public class WordController : MonoBehaviour {
 	}
 
 	void LoadAnswers() {
+		allAnswers.Add(answerOne);
+		allAnswers.Add(answerTwo);
+		allAnswers.Add(answerThree);
+		int questionNumber = 0;
 		string[] lines = answersFile.text.Split('\n');
 		for (int i = 0; i < lines.Length; i++) {
 			string[] thisLine = lines[i].Split(',');
 			List<string> sendLine = new List<string>();
+			bool breakLine = false;
 			foreach (string s in thisLine) {
 				if(s == "ENDANSWER") {
-					
+					breakLine = true;
+					questionNumber++;
+					break;
 				}
 				if(s == "") {
 					break;
 				}
 				sendLine.Add(s);
 			}
-			answers.Add(sendLine);
+			if(!breakLine) {
+				allAnswers[questionNumber].Add(sendLine);
+			}
 		}
 	}
 
@@ -155,24 +172,26 @@ public class WordController : MonoBehaviour {
 	}
 
 	void SpawnNextAnswer() {
-		//take answers
-		//trim answers and get just the answer lines for the current question
-		List<List<string>> currentAnswer = new List<List<string>>();
-		//currentAnswer = answers.trim(4,9)
-
-
+		//Take in currentAnswerNumber
+		//If -1 ---> don't spawn answers
+		if(currentAnswerNumber < 0) {
+			return;
+		}
+		//If 0,1,2 ----> spawn answer 1,2,3
+		List<List<string>> currentAnswer;
+		currentAnswer = allAnswers[currentAnswerNumber];
 
 		List<string> compatibleWords = new List<string>();
 		//if this line is to short, skip it
-		for(int i = 0; i < answers.Count; i++) {
-			if(answers[i].Count <= currentMSGScript.Msg.Count) {
+		for(int i = 0; i < currentAnswer.Count; i++) {
+			if(currentAnswer[i].Count <= currentMSGScript.Msg.Count) {
 				continue;
 			}
 			//Not too short? lets assume it is corect
 			bool addThisWord = true;
 			//Check if every word already in current Message matches every coorosponding word in the line 
 			for(int j = 0; j < currentMSGScript.Msg.Count; j++) {
-				if(answers[i][j] != currentMSGScript.Msg[j]) {
+				if(currentAnswer[i][j] != currentMSGScript.Msg[j]) {
 					addThisWord = false;
 					break;
 				}
@@ -181,8 +200,8 @@ public class WordController : MonoBehaviour {
 			// 1. The length of this line is > currentMSG
 			// 2. Every word in the current msg is equal to the coorosponding part of the line
 			if(addThisWord) {
-				compatibleWords.Add(answers[i][currentMSGScript.Msg.Count]);
-				//Debug.Log(answers[i][currentMSGScript.Msg.Count]);
+				compatibleWords.Add(currentAnswer[i][currentMSGScript.Msg.Count]);
+				//Debug.Log(currentAnswer[i][currentMSGScript.Msg.Count]);
 			}
 		}
 		//compatibleWords.Add ( AddAnswerWords() )
@@ -224,7 +243,7 @@ public class WordController : MonoBehaviour {
 	}
 
 	void SpawnNextQuestion() {
-		foreach (string thisWord in questions[currentQuestion]) {
+		foreach (string thisWord in questions[currentQuestionNumber]) {
 			if(currentMSGScript.Msg.Contains(thisWord)) {
 				continue;
 			} else {
