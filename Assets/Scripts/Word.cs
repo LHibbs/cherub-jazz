@@ -20,11 +20,12 @@ public class Word : MonoBehaviour {
 
     void TaskOnClick()
     {
-        if(isQuestion) {
+        wordControllerScript.WordClicked(myText.text);
+        /*if(isQuestion) {
             wordControllerScript.QuestionWordClicked(myText.text);
         } else {
 		    wordControllerScript.WordClicked(myText.text);
-        }
+        }*/
     }
 
     public bool IsQuestion

@@ -177,9 +177,29 @@ Prefab:
       propertyPath: answersFile
       value: 
       objectReference: {fileID: 4900000, guid: ad9b8f4fdbb69463d8b6a211081c07aa, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114255763444030052, guid: ebfbce7fd408d48b5943deb0a420561d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ebfbce7fd408d48b5943deb0a420561d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &264579281 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1043152656069974, guid: ebfbce7fd408d48b5943deb0a420561d,
+    type: 2}
+  m_PrefabInternal: {fileID: 264579280}
+--- !u!114 &264579282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 264579281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e61a555a11d74313aa08073dac6ceaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyFile: {fileID: 4900000, guid: b5a232aebea09413ba1806033d5d5e01, type: 3}
+  wordPrefab: {fileID: 1929784956718596, guid: 2f44c06b6324c44459e12925c393c38d, type: 2}
+  currentMSGObj: {fileID: 416681273}
 --- !u!1 &416681273 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1462577017713764, guid: 6659ff174b25d42f496f723e3fd62483,
